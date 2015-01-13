@@ -1,0 +1,198 @@
+% A BEGINNER'S CHEAT SHEET TO VIM
+% Author: Lance Lafontaine (lancelafontaine.github.io)
+% Last Edit: 2015-01-13
+%
+% DISCLAIMER: This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License (http://creativecommons.org/licenses/by-nc-sa/3.0/). The cheatsheet template was adapted from Winston Chang's version found at http://www.stdout.org/~winston/latex/. This cheatsheet is intended for non-commercial use.
+
+
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm       
+% if using A4 paper. (This probably isn't strictly necessary.)              
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+ 
+% Redefine section commands to use less space 
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\raggedright
+\begin{multicols}{3}
+
+% multicol parameters                                                       
+% These lengths are set only within the two main columns                    
+\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\underline{\textbf{Beginner's Vim Cheat Sheet}}} \\
+\end{center}
+
+\textbf{Remember: }\textit{These can all be used with a repeater.}
+
+\section{Movement}
+\verb!h/j/k/l! \hfill Move left/down/up/right.\\
+\verb!Ctrl+d! \hfill Move half-screen down.\\
+\verb!Ctrl+u! \hfill Move half-screen up.\\
+\verb!Ctrl+f! \hfill Move full screen forward.\\
+\verb!Ctrl+b! \hfill Move full screen backward.\\
+\verb! !\\
+\verb!M! \hfill Bring cursor to middle of screen.\\
+\verb!H! \hfill Bring cursor to top of screen.\\
+\verb!3H! \hfill Bring cursor to 3 lines from top of screen.\\
+\verb!L! \hfill Bring cursor to bottom of screen.\\
+\verb!3L! \hfill Bring cursor to 3 lines from bottom of screen.\\
+\verb!zt! \hfill Make cursor position top of window.\\
+\verb!zz! \hfill Make cursor position middle of window.\\
+\verb!zb! \hfill Make cursor position bottom of window.\\
+\verb! !\\
+\verb!w/b! \hfill Go to next/previous delimiter.\\
+\verb!W/B! \hfill Go to next/previous word.\\
+\verb! !\\
+\verb!$! \hfill Go to end of line.\\
+\verb!^! \hfill Go to first letter of a line.\\
+\verb!0! \hfill Go to beginning of a line.\\
+\verb!gg/G! \hfill Go to beginning/end of the file.\\
+\verb!{/}! \hfill Go to beginning/end of paragraph.\\ 
+\verb!8gg! and \verb!8G! and \verb!:8! \hfill Go to line 8.\\
+\verb! !\\
+\verb!fP! \hfill Find next P in the line.\\
+\verb!FP! \hfill Find previous P in the line.\\
+\verb!tP! \hfill Find delimiter before next P.\\
+\verb!TP! \hfill Find delimiter after previous P.\\
+\verb! !\\
+\verb!ma! \hfill Record a marker in the register "a".\\
+\verb!'a! \hfill Move to marker a.\\
+\verb!''! \hfill Toggle between marker and previous position.\\
+\verb! !\\
+\verb!v! \hfill Visual mode. \verb!j/k! to highlight text.\\
+\verb!V! \hfill Visual Line mode. Highlight full lines.\\
+\verb! !\\
+\textit{In Visual mode, pressing \% under a bracket highlights until matching bracket.}\\
+\verb! !\\
+
+\section{Editing}
+
+\verb!o/O! \hfill Add line below/above, enter insert mode.\\
+\verb! ! \\
+\verb!x/X! \hfill Delete character on/before cursor.\\
+\verb! !\\
+\verb!dw/db! \hfill Delete next/previous word.\\
+\verb!cw/cb! \hfill Change next/previous word.\\
+\verb! !\\
+\verb!dd/cc! \hfill Delete/change entire line.\\
+\verb! !\\
+\verb!dj/cj! \hfill Delete/change two lines downward.\\\
+\verb!dk/ck! \hfill Delete/change two lines upward.\\
+\verb! !\\
+\verb!d[motion]! \hfill Delete according to motion.\\
+\verb!c[motion]! \hfill Change according to motion.\\
+\verb! !\\
+\verb!di"/ci"! \hfill Delete/change text inside "".\\
+\verb!da"/ca"! \hfill Delete/change text inside "", delete "".\\
+\verb! ! \\
+\verb!u! \hfill Undo change.\\
+\verb!Ctrl + r! \hfill Redo change.\\
+\verb! !\\
+\verb!yw/yy! \hfill Copy a word/line.\\
+\verb! ! \\
+\verb!p/P! \hfill Paste, delete character on/after cursor.\\
+\verb! !\\
+\verb!>>/<<! \hfill Indent/unindent in normal mode.\\
+\verb!=3j! \hfill Autoindent 3 lines after cursor.\\
+
+\section{Search and Replace}
+\verb!/[searchterm]! \hfill Search. \verb!n/N! for next/previous.\\
+\verb!?[searchterm]! \hfill Backward search.\\
+\textit{You can use regular expressions and escape chars.}\\
+\textit{Can be used as motions with delete, change, copy.}\\
+\verb! !\\
+\verb!:%s:old:new! \hfill Replace old by new. \verb!%! is the scope.\\
+\hfill \verb!:! \textit{can be replaced by other separators.}\\
+\verb!:%s:old:new:c! \hfill Prompt before each replacement.\\
+
+\section{Macros}
+\verb!qa! \hfill Record a macro in register "a".\\
+\verb!j0q! \hfill Stop recording the macro.\\
+\verb!:reg! \hfill List all registers.\\
+\verb!@a! \hfill Execute macro in register "a".\\
+\verb!@@! \hfill Execute previous macro.\\
+
+\section{Buffers, Windows and Tabs}
+\verb!:ls! \hfill List all buffers in session.\\
+\verb!:bn! \hfill Navigate to next buffer.\\
+\verb!:bp! or \verb!:b#! \hfill Navigate to previous buffer.\\
+\verb!:bf! \hfill Navigate to first buffer.\\
+\verb!:bd! \hfill Delete current buffer.\\
+\verb!:bd1! \hfill Delete buffer labeled "1".\\ 
+\verb! !\\
+\verb!:vs ~/file! \hfill Open file in vertical pane.\\
+\verb!:sp ~/file! \hfill Open file in horizontal pane.\\   
+\verb!:vert sb2! \hfill Open buffer 2 in vertical pane.\\
+\verb!:sb2! \hfill Opens buffer 2 in horizontal pane.\\
+\verb! !\\
+\verb!Ctrl + w + h/j/k/l! \hfill Move to * window.\\
+\verb!Ctrl + w + /H/J/K/L! \hfill Move window to * side.\\                                   
+\verb!Ctrl + w + 1+! \hfill Increase window height by 1.\\      
+\verb!Ctrl + w + 1-! \hfill Decrease window height by 1.\\                                                                        
+\verb!Ctrl + w + >!  \hfill Increase window width by 1.\\     
+\verb!Ctrl + w + <!  \hfill Decrease window width by 1.\\           
+\verb!Ctrl + w + =!  \hfill Equalize height and width of all windows.\\
+\verb! !\\
+\verb!:e ~/file! \hfill Edit a file.\\
+\verb!:tabe ~/file! \hfill Edit file in new tab.\\
+\verb!gt! \hfill Move one tab forward.\\
+\verb!gT! \hfill Move one tab backward.\\
+
+\section{Miscellaneous}
+\verb!:se ft=python! \hfill sets filetype.\\
+\verb!:so ~/file! \hfill rebuilds a file.\\
+\verb!:so %! \hfill rebuilds this file.\\
+\verb!:sav ~/file! \hfill Saves file elsewhere.\\
+\verb! !\\
+\verb!:!!\verb!ls -lah! \hfill Access the command line.\\
+\verb!:r !!\verb!date! \hfill Append command output to cursor.\\
+\verb! !\\
+\verb!:map ,s :sav<CR>! \hfill Map ",rs" to cmd. CR is Enter.\\
+
+\section{Defined in my .vimrc}
+
+\verb!OO! \hfill Insert line above cursor.\\
+\verb!oo! \hfill Insert line below cursor.\\
+\verb!,ci! \hfill Toggle line comments.\\
+\verb!,n! \hfill Toggle file navigation.\\
+\verb!,k! \hfill Strip whitespace.\\
+
+\end{multicols}
+\end{document}
